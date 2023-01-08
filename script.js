@@ -172,7 +172,7 @@
             } 
         },
         winLogic: function () {
-            if ( ((cellOne.textContent === 'X')&&(cellTwo.textContent === 'X')&&
+            if ( (((cellOne.textContent === 'X')&&(cellTwo.textContent === 'X')&&
                 (cellThree.textContent === 'X')) || ((cellFour.textContent === 'X')&&(cellFive.textContent === 'X')&&
                 (cellSix.textContent === 'X')) || ((cellSeven.textContent === 'X')&&(cellEight.textContent === 'X')&&
                 (cellNine.textContent === 'X')) || ((cellOne.textContent === 'X')&&(cellFour.textContent === 'X')&&
@@ -180,9 +180,9 @@
                 (cellEight.textContent === 'X')) || ((cellThree.textContent === 'X')&&(cellSix.textContent === 'X')&&
                 (cellNine.textContent === 'X')) || ((cellOne.textContent === 'X')&&(cellFive.textContent === 'X')&&
                 (cellNine.textContent === 'X')) || ((cellThree.textContent === 'X')&&(cellFive.textContent === 'X')&&
-                (cellSeven.textContent === 'X')) ) {
+                (cellSeven.textContent === 'X')))&&(winner.textContent === '') ) {
                     winner.textContent = 'Player X Wins!'
-                } else if ( ((cellOne.textContent === 'O')&&(cellTwo.textContent === 'O')&&
+                } else if ( (((cellOne.textContent === 'O')&&(cellTwo.textContent === 'O')&&
                 (cellThree.textContent === 'O')) || ((cellFour.textContent === 'O')&&(cellFive.textContent === 'O')&&
                 (cellSix.textContent === 'O')) || ((cellSeven.textContent === 'O')&&(cellEight.textContent === 'O')&&
                 (cellNine.textContent === 'O')) || ((cellOne.textContent === 'O')&&(cellFour.textContent === 'O')&&
@@ -190,7 +190,7 @@
                 (cellEight.textContent === 'O')) || ((cellThree.textContent === 'O')&&(cellSix.textContent === 'O')&&
                 (cellNine.textContent === 'O')) || ((cellOne.textContent === 'O')&&(cellFive.textContent === 'O')&&
                 (cellNine.textContent === 'O')) || ((cellThree.textContent === 'O')&&(cellFive.textContent === 'O')&&
-                (cellSeven.textContent === 'O')) ) {
+                (cellSeven.textContent === 'O')))&&(winner.textContent === '') ) {
                     winner.textContent = 'Player O Wins!'
                 } else {
                     let count = 0;
