@@ -9,12 +9,11 @@
     const cellEight = document.getElementById('8');
     const cellNine = document.getElementById('9');
     const clearButton = document.getElementById('clrBtn');
+    const winner = document.querySelector('.winner')
     var gameBoard = {
         layout: ['','','','','','','','',''],
         player: 'x',
         render: function () {
-            console.log(gameBoard.layout)
-            console.log(cellOne)
             cellOne.textContent = `${gameBoard.layout[0]}`
             cellTwo.textContent = `${gameBoard.layout[1]}`
             cellThree.textContent = `${gameBoard.layout[2]}`
@@ -26,15 +25,24 @@
             cellNine.textContent = `${gameBoard.layout[8]}`
         },
         bind: function () {
-            cellOne.addEventListener('click', () => {gameBoard.markSquare1()})
-            cellTwo.addEventListener('click', () => {gameBoard.markSquare2()})
-            cellThree.addEventListener('click', () => {gameBoard.markSquare3()})
-            cellFour.addEventListener('click', () => {gameBoard.markSquare4()})
-            cellFive.addEventListener('click', () => {gameBoard.markSquare5()})
-            cellSix.addEventListener('click', () => {gameBoard.markSquare6()})
-            cellSeven.addEventListener('click', () => {gameBoard.markSquare7()})
-            cellEight.addEventListener('click', () => {gameBoard.markSquare8()})
-            cellNine.addEventListener('click', () => {gameBoard.markSquare9()})
+            cellOne.addEventListener('click', () => {gameBoard.markSquare1(); 
+                gameBoard.winLogic();})
+            cellTwo.addEventListener('click', () => {gameBoard.markSquare2(); 
+                gameBoard.winLogic();})
+            cellThree.addEventListener('click', () => {gameBoard.markSquare3();
+                gameBoard.winLogic();})
+            cellFour.addEventListener('click', () => {gameBoard.markSquare4();
+                gameBoard.winLogic();})
+            cellFive.addEventListener('click', () => {gameBoard.markSquare5();
+                gameBoard.winLogic();})
+            cellSix.addEventListener('click', () => {gameBoard.markSquare6();
+                gameBoard.winLogic();})
+            cellSeven.addEventListener('click', () => {gameBoard.markSquare7();
+                gameBoard.winLogic();})
+            cellEight.addEventListener('click', () => {gameBoard.markSquare8();
+                gameBoard.winLogic();})
+            cellNine.addEventListener('click', () => {gameBoard.markSquare9();
+                gameBoard.winLogic();})
             clearButton.addEventListener('click', () => {gameBoard.clear()})
         },
         markSquare1: function () {
@@ -163,9 +171,45 @@
                 }
             } 
         },
+        winLogic: function () {
+            if ( ((cellOne.textContent === 'X')&&(cellTwo.textContent === 'X')&&
+                (cellThree.textContent === 'X')) || ((cellFour.textContent === 'X')&&(cellFive.textContent === 'X')&&
+                (cellSix.textContent === 'X')) || ((cellSeven.textContent === 'X')&&(cellEight.textContent === 'X')&&
+                (cellNine.textContent === 'X')) || ((cellOne.textContent === 'X')&&(cellFour.textContent === 'X')&&
+                (cellSeven.textContent === 'X')) || ((cellTwo.textContent === 'X')&&(cellFive.textContent === 'X')&&
+                (cellEight.textContent === 'X')) || ((cellThree.textContent === 'X')&&(cellSix.textContent === 'X')&&
+                (cellNine.textContent === 'X')) || ((cellOne.textContent === 'X')&&(cellFive.textContent === 'X')&&
+                (cellNine.textContent === 'X')) || ((cellThree.textContent === 'X')&&(cellFive.textContent === 'X')&&
+                (cellSeven.textContent === 'X')) ) {
+                    winner.textContent = 'Player X Wins!'
+                } else if ( ((cellOne.textContent === 'O')&&(cellTwo.textContent === 'O')&&
+                (cellThree.textContent === 'O')) || ((cellFour.textContent === 'O')&&(cellFive.textContent === 'O')&&
+                (cellSix.textContent === 'O')) || ((cellSeven.textContent === 'O')&&(cellEight.textContent === 'O')&&
+                (cellNine.textContent === 'O')) || ((cellOne.textContent === 'O')&&(cellFour.textContent === 'O')&&
+                (cellSeven.textContent === 'O')) || ((cellTwo.textContent === 'O')&&(cellFive.textContent === 'O')&&
+                (cellEight.textContent === 'O')) || ((cellThree.textContent === 'O')&&(cellSix.textContent === 'O')&&
+                (cellNine.textContent === 'O')) || ((cellOne.textContent === 'O')&&(cellFive.textContent === 'O')&&
+                (cellNine.textContent === 'O')) || ((cellThree.textContent === 'O')&&(cellFive.textContent === 'O')&&
+                (cellSeven.textContent === 'O')) ) {
+                    winner.textContent = 'Player O Wins!'
+                } else {
+                    let count = 0;
+                    for (i = 0; i < 9; i++){
+                        if (gameBoard.layout[i] !== ''){
+                            count += 1
+                        }
+                    }
+                    if ((count === 9)&&(winner.textContent === '')) {
+                        winner.textContent = 'Tie!'
+                    }
+                    count = 0;
+                }
+        },
         clear: function () {
             gameBoard.layout = ['','','','','','','','','']
             gameBoard.render();
+            gameBoard.player = 'x'
+            winner.textContent = ''
         },
         init: function () {
             this.render();
@@ -173,4 +217,5 @@
         },
     }
     gameBoard.init();
+    
 })()
